@@ -1,5 +1,20 @@
 {
-  "users": [],
+  "users": [
+    {
+      "username": "karthick",
+      "displayName": "Karthick",
+      "password": "V2VsY29tZUAxMjM=",
+      "createdAt": "2026-04-03T23:51:53.963Z",
+      "colorIndex": 0
+    },
+    {
+      "username": "nivi",
+      "displayName": "Nivi",
+      "password": "V2VsY29tZUAxMjM=",
+      "createdAt": "2026-04-03T23:54:15.313Z",
+      "colorIndex": 1
+    }
+  ],
   "messages": {},
   "avatars": {}
 }
