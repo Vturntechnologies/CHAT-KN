@@ -1,4 +1,4 @@
-# 💬 NiviChat
+# 💬 private Chat
 
 A private two-user messaging app with voice calling, built for GitHub Pages. Features an Apple Liquid Glass UI in black theme.
 
@@ -8,12 +8,6 @@ A private two-user messaging app with voice calling, built for GitHub Pages. Fea
 2. Upload `index.html` and `nivichat-db.json` to the root
 3. Go to **Settings → Pages → Source: main branch / root**
 4. Your app is live at `https://yourusername.github.io/nivichat/`
-
-## 🔐 Admin Login
-
-Default credentials (change in `index.html`):
-- **Username:** `admin`
-- **Password:** `Admin@2024`
 
 > ⚠️ To change the admin password, open `index.html` and edit line:
 > ```js
