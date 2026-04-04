@@ -1,0 +1,14 @@
+{
+  "users": {
+    "admin": {
+      "username": "admin",
+      "displayName": "Admin",
+      "passwordHash": "71cbf8f6f5998b01f4c1f6871e3c87c9d6f73770d4af3f2af5f1aaf3217f7e60",
+      "avatarUrl": "",
+      "colorIndex": 0,
+      "isAdmin": true
+    }
+  },
+  "summaries": {},
+  "conversations": {}
+}

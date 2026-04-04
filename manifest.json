@@ -1,13 +1,12 @@
 {
   "name": "Private Space",
   "short_name": "Private Space",
-  "description": "Private 1-to-1 chat application",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "orientation": "portrait",
+  "description": "Private 1-to-1 chat app powered by Firebase",
   "icons": [
     {
       "src": "./icons/icon-192.png",
