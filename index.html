@@ -10,8 +10,8 @@
     :root{
       --bg:#06070a; --panel:rgba(255,255,255,.06); --panel2:rgba(255,255,255,.04);
       --stroke:rgba(255,255,255,.09); --text:#f4f7fb; --text2:#b9c2cf; --text3:#8690a0;
-      --accent:#0a84ff; --accent2:#5ac8fa; --danger:#ff453a; --ok:#30d158;
-      --radius:24px; --shadow:0 18px 60px rgba(0,0,0,.45);
+      --accent:#0a84ff; --accent2:#5ac8fa; --danger:#ff453a;
+      --shadow:0 18px 60px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);
@@ -25,7 +25,7 @@
     .center{width:100%;min-height:100dvh;display:grid;place-items:center;padding:20px}
     .glass{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border:1px solid var(--stroke);
       box-shadow:var(--shadow);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
-    .card{width:min(480px,95vw);padding:24px;border-radius:30px}
+    .card{width:min(520px,95vw);padding:24px;border-radius:30px}
     .title{font-size:28px;font-weight:800;margin:0 0 8px}
     .sub{font-size:14px;color:var(--text2);line-height:1.5;margin-bottom:16px}
     .row{display:grid;gap:8px;margin-bottom:12px}
@@ -41,7 +41,6 @@
     .checkbox{display:flex;align-items:center;gap:10px;color:var(--text2);font-size:13px;margin-top:10px}
     .checkbox input{width:16px;height:16px;accent-color:var(--accent)}
 
-    /* gate */
     .calc-shell{width:min(380px,95vw);padding:20px;border-radius:32px}
     .calc-top{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:12px}
     .calc-display{min-height:120px;padding:16px 12px;border-radius:24px;background:rgba(255,255,255,.04);border:1px solid var(--stroke);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end}
@@ -54,7 +53,6 @@
     .calc-key.enter{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 28px rgba(10,132,255,.32)}
     .calc-key:active{transform:scale(.97)}
 
-    /* app */
     #appScreen{min-height:100dvh}
     .app{display:grid;grid-template-columns:320px 1fr;width:100%;min-height:100dvh}
     .sidebar{padding:18px;border-right:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);backdrop-filter:blur(18px)}
@@ -114,36 +112,32 @@
   <section id="gateScreen" class="screen active">
     <div class="center">
       <div class="calc-shell glass">
-        <div class="calc-top">
-          <div>Calculator</div>
-          <div>Private Space</div>
-        </div>
+        <div class="calc-top"><div>Calculator</div><div>Private Space</div></div>
         <div class="calc-display">
           <div class="calc-hint">Enter access code</div>
           <div id="calcCode" class="calc-code">0</div>
           <div id="calcMsg" class="calc-sub">Use your 4-digit PIN</div>
+        </div>
+        <div class="actions" style="justify-content:center;margin:12px 0 0">
+          <button class="btn" style="height:38px;padding:0 14px" onclick="resetAppPin()">Reset PIN to 0303</button>
         </div>
         <div class="calc-grid">
           <button class="calc-key" onclick="gateClear()">AC</button>
           <button class="calc-key" onclick="gateBack()">⌫</button>
           <button class="calc-key op" onclick="gatePress('00')">00</button>
           <button class="calc-key enter" onclick="gateSubmit()">=</button>
-
           <button class="calc-key" onclick="gatePress('7')">7</button>
           <button class="calc-key" onclick="gatePress('8')">8</button>
           <button class="calc-key" onclick="gatePress('9')">9</button>
           <button class="calc-key op">÷</button>
-
           <button class="calc-key" onclick="gatePress('4')">4</button>
           <button class="calc-key" onclick="gatePress('5')">5</button>
           <button class="calc-key" onclick="gatePress('6')">6</button>
           <button class="calc-key op">×</button>
-
           <button class="calc-key" onclick="gatePress('1')">1</button>
           <button class="calc-key" onclick="gatePress('2')">2</button>
           <button class="calc-key" onclick="gatePress('3')">3</button>
           <button class="calc-key op">−</button>
-
           <button class="calc-key">.</button>
           <button class="calc-key" onclick="gatePress('0')">0</button>
           <button class="calc-key enter" onclick="gateSubmit()">↵</button>
@@ -157,7 +151,7 @@
     <div class="center">
       <div class="card glass">
         <h1 class="title">Firebase setup</h1>
-        <div class="sub">Paste your Firebase web config once. It stays saved on this device.</div>
+        <div class="sub">Paste your Firebase web config once. Admin Google login is restricted to <b>karthickpraveen072@gmail.com</b>.</div>
         <div class="row"><label class="label">API key</label><input id="cfgApiKey" class="input"></div>
         <div class="row"><label class="label">Auth domain</label><input id="cfgAuthDomain" class="input" placeholder="project-id.firebaseapp.com"></div>
         <div class="row"><label class="label">Database URL</label><input id="cfgDatabaseURL" class="input" placeholder="https://project-id-default-rtdb.firebaseio.com"></div>
@@ -166,7 +160,7 @@
         <div class="row"><label class="label">Messaging sender ID</label><input id="cfgMessagingSenderId" class="input"></div>
         <div class="row"><label class="label">App ID</label><input id="cfgAppId" class="input"></div>
         <div class="actions"><button class="btn primary" onclick="saveFirebaseConfig()">Save & continue</button></div>
-        <div class="mini">This version keeps the frontend on GitHub Pages and uses Firebase Realtime Database + Storage for sync and media.</div>
+        <div class="mini">Frontend can still live on GitHub Pages. Chat sync and media live in Firebase.</div>
       </div>
     </div>
   </section>
@@ -175,12 +169,13 @@
     <div class="center">
       <div class="card glass">
         <h1 class="title">Sign in</h1>
-        <div class="sub">Private 1-to-1 chat. Accounts are created from the admin panel.</div>
+        <div class="sub">Users sign in with username + password. Admin signs in with Google only.</div>
         <div class="row"><label class="label">Username</label><input id="loginUser" class="input" autocomplete="username"></div>
         <div class="row"><label class="label">Password</label><input id="loginPass" class="input" type="password" autocomplete="current-password"></div>
         <div class="checkbox"><input type="checkbox" id="rememberMe" checked><label for="rememberMe">Keep me signed in on this device</label></div>
         <div class="actions">
-          <button class="btn primary" onclick="doLogin()">Sign in</button>
+          <button class="btn primary" onclick="doLogin()">User sign in</button>
+          <button class="btn" onclick="signInAdminWithGoogle()">Admin with Google</button>
           <button class="btn" onclick="openConfig()">Firebase config</button>
         </div>
         <div id="loginErr" class="err"></div>
@@ -251,7 +246,7 @@
         <button class="btn primary" onclick="saveFirebaseConfig(true)">Save</button>
         <button class="btn" onclick="closeConfig()">Close</button>
       </div>
-      <div class="mini">The raw password is not saved. The app remembers a device session instead.</div>
+      <div class="mini">Google admin login needs Firebase Authentication with Google enabled.</div>
     </div>
   </div>
 
@@ -270,13 +265,10 @@
   </div>
 
   <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
-    import {
-      getDatabase, ref, get, set, update, push, onValue, off, serverTimestamp
-    } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js';
-    import {
-      getStorage, ref as sRef, uploadBytes, getDownloadURL
-    } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js';
+    import { initializeApp, deleteApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+    import { getDatabase, ref, get, set, update, push, onValue, off } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js';
+    import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js';
 
     const APP_NAME = 'Private Space';
     const CFG_KEY = 'ps-firebase-config';
@@ -284,8 +276,9 @@
     const LAST_USER_KEY = 'ps-last-user';
     const PIN_KEY = 'ps-secret-pin';
     const DEFAULT_PIN = '0303';
+    const ADMIN_EMAIL = 'karthickpraveen072@gmail.com';
 
-    let app = null, db = null, storage = null;
+    let app = null, auth = null, db = null, storage = null;
     let gateInput = '';
     let currentUser = null;
     let selectedUser = null;
@@ -306,25 +299,31 @@
     };
     const showScreen = id => ['gateScreen','setupScreen','loginScreen','appScreen'].forEach(x => $(x).classList.toggle('active', x === id));
     const avatarHTML = (name='', url='') => url ? `<img src="${url}" alt="${esc(name)}">` : esc((name || '?').trim().slice(0,1).toUpperCase());
-    const formatTime = ts => {
-      const d = new Date(ts || Date.now());
-      return d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-    };
-    const formatDate = ts => {
-      const d = new Date(ts || Date.now());
-      return d.toLocaleDateString([], {month:'short', day:'numeric'});
-    };
+    const formatTime = ts => new Date(ts || Date.now()).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    const formatDate = ts => new Date(ts || Date.now()).toLocaleDateString([], {month:'short', day:'numeric'});
     const pairKey = (a,b) => [a,b].sort().join('__');
 
     function getConfig(){ try { return JSON.parse(localStorage.getItem(CFG_KEY) || '{}'); } catch { return {}; } }
     function setConfig(cfg){ localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); }
-    function getPin(){ return localStorage.getItem(PIN_KEY) || DEFAULT_PIN; }
-    function setPin(pin){ localStorage.setItem(PIN_KEY, pin || DEFAULT_PIN); }
+    function getPin(){
+      const pin = (localStorage.getItem(PIN_KEY) || '').trim();
+      return /^\d{4}$/.test(pin) ? pin : DEFAULT_PIN;
+    }
+    function setPin(pin){
+      const safe = String(pin || '').trim();
+      localStorage.setItem(PIN_KEY, /^\d{4}$/.test(safe) ? safe : DEFAULT_PIN);
+    }
+    function resetPinToDefault(){
+      localStorage.removeItem(PIN_KEY);
+      return DEFAULT_PIN;
+    }
 
-    function initFirebase(){
+    async function initFirebase(){
       const cfg = getConfig();
-      if(!cfg.apiKey || !cfg.databaseURL || !cfg.projectId || !cfg.storageBucket || !cfg.appId) return false;
+      if(!cfg.apiKey || !cfg.authDomain || !cfg.databaseURL || !cfg.projectId || !cfg.storageBucket || !cfg.appId) return false;
+      try{ if(app) await deleteApp(app); }catch(e){}
       app = initializeApp(cfg, 'private-space-' + Math.random().toString(36).slice(2));
+      auth = getAuth(app);
       db = getDatabase(app);
       storage = getStorage(app);
       return true;
@@ -347,16 +346,22 @@
     };
     window.gateBack = () => { gateInput = gateInput.slice(0,-1); updateCalc(); };
     window.gateClear = () => { gateInput = ''; updateCalc(); };
+    window.resetAppPin = () => {
+      resetPinToDefault();
+      gateInput = '';
+      updateCalc('PIN reset to 0303');
+      showToast('PIN reset to 0303');
+      setTimeout(() => updateCalc(), 900);
+    };
     window.gateSubmit = async () => {
-      if(gateInput !== getPin()){
+      const activePin = getPin();
+      if(gateInput !== activePin){
         updateCalc('Wrong code');
-        setTimeout(() => { gateInput = ''; updateCalc(); }, 650);
+        setTimeout(() => { gateInput = ''; updateCalc('Use your 4-digit PIN'); }, 650);
         return;
       }
       gateInput = '';
-      const hasConfig = getConfig().apiKey;
-      if(!hasConfig || !initFirebase()){ openSetup(); return; }
-
+      if(!getConfig().apiKey || !(await initFirebase())){ openSetup(); return; }
       const sessionRaw = localStorage.getItem(SESSION_KEY);
       if(sessionRaw){
         try{
@@ -382,7 +387,7 @@
       showScreen('setupScreen');
     }
 
-    window.saveFirebaseConfig = (fromModal=false) => {
+    window.saveFirebaseConfig = async (fromModal=false) => {
       const map = fromModal ? {
         apiKey: $('cfgApiKey2').value.trim(),
         authDomain: $('cfgAuthDomain2').value.trim(),
@@ -404,18 +409,13 @@
         const pin = $('cfgPin').value.trim();
         if(pin && /^\d{4}$/.test(pin)) setPin(pin);
       }
-      if(!map.apiKey || !map.databaseURL || !map.projectId || !map.storageBucket || !map.appId){
+      if(!map.apiKey || !map.authDomain || !map.databaseURL || !map.projectId || !map.storageBucket || !map.appId){
         showToast('Fill all required Firebase fields');
         return;
       }
       setConfig(map);
       showToast('Firebase config saved');
-      if(fromModal){
-        closeConfig();
-        location.reload();
-      } else {
-        location.reload();
-      }
+      location.reload();
     };
 
     window.openConfig = () => {
@@ -433,7 +433,6 @@
     window.closeConfig = () => $('configModal').classList.remove('show');
 
     async function bootstrapApp(){
-      if(!db) return;
       showScreen('appScreen');
       $('myName').textContent = currentUser.displayName;
       $('myRole').textContent = currentUser.isAdmin ? 'Admin' : 'User';
@@ -470,23 +469,50 @@
       }
       currentUser = user;
       localStorage.setItem(LAST_USER_KEY, username);
-      if($('rememberMe').checked){
-        localStorage.setItem(SESSION_KEY, JSON.stringify(user));
-      } else {
-        localStorage.removeItem(SESSION_KEY);
-      }
+      if($('rememberMe').checked) localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+      else localStorage.removeItem(SESSION_KEY);
       $('loginPass').value = '';
       await bootstrapApp();
     };
 
-    window.logout = () => {
+    window.signInAdminWithGoogle = async () => {
+      $('loginErr').textContent = '';
+      try{
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        const result = await signInWithPopup(auth, provider);
+        const email = (result.user.email || '').toLowerCase();
+        if(email !== ADMIN_EMAIL){
+          await signOut(auth);
+          $('loginErr').textContent = 'That Google account is not allowed for admin.';
+          return;
+        }
+        const adminUser = {
+          username: 'admin',
+          displayName: result.user.displayName || 'Admin',
+          passwordHash: '',
+          avatarUrl: result.user.photoURL || '',
+          colorIndex: 0,
+          isAdmin: true,
+          adminEmail: email,
+          googleUid: result.user.uid
+        };
+        await update(ref(db, 'users/admin'), adminUser);
+        currentUser = adminUser;
+        localStorage.setItem(SESSION_KEY, JSON.stringify(adminUser));
+        localStorage.setItem(LAST_USER_KEY, 'admin');
+        await bootstrapApp();
+      }catch(err){
+        console.error(err);
+        $('loginErr').textContent = err?.message || 'Google sign-in failed';
+      }
+    };
+
+    window.logout = async () => {
       detachRealtime();
-      currentUser = null;
-      selectedUser = null;
-      usersMap = {};
-      summariesMap = {};
-      currentMessages = [];
+      currentUser = null; selectedUser = null; usersMap = {}; summariesMap = {}; currentMessages = [];
       localStorage.removeItem(SESSION_KEY);
+      try{ if(auth?.currentUser) await signOut(auth); }catch(e){}
       showScreen('loginScreen');
       $('loginPass').value = '';
     };
@@ -505,11 +531,11 @@
         usersMap = snap.val() || {};
         const self = usersMap[currentUser.username];
         if(self){
-          currentUser = self;
-          localStorage.setItem(SESSION_KEY, JSON.stringify(self));
-          $('myName').textContent = self.displayName;
-          $('myRole').textContent = self.isAdmin ? 'Admin' : 'User';
-          $('myAvatar').innerHTML = avatarHTML(self.displayName, self.avatarUrl || '');
+          currentUser = { ...currentUser, ...self };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(currentUser));
+          $('myName').textContent = currentUser.displayName;
+          $('myRole').textContent = currentUser.isAdmin ? 'Admin' : 'User';
+          $('myAvatar').innerHTML = avatarHTML(currentUser.displayName, currentUser.avatarUrl || '');
         }
         const others = getOthers();
         if(!selectedUser && others.length) selectedUser = others[0];
@@ -530,9 +556,7 @@
     }
 
     function getOthers(){
-      return Object.values(usersMap)
-        .filter(u => u.username !== currentUser.username)
-        .sort((a,b) => (a.displayName || '').localeCompare(b.displayName || ''));
+      return Object.values(usersMap).filter(u => u.username !== currentUser.username).sort((a,b) => (a.displayName || '').localeCompare(b.displayName || ''));
     }
 
     window.renderContacts = () => {
@@ -612,11 +636,7 @@
         const day = formatDate(m.timestamp);
         const sep = day !== lastDate ? `<div class="date-sep">${day}</div>` : '';
         lastDate = day;
-        return `${sep}
-          <div class="msg-wrap ${sent ? 'sent' : ''}">
-            <div class="bubble ${sent ? 'sent' : ''}">${renderMessageBody(m)}</div>
-            <div class="msg-time">${formatTime(m.timestamp)}</div>
-          </div>`;
+        return `${sep}<div class="msg-wrap ${sent ? 'sent' : ''}"><div class="bubble ${sent ? 'sent' : ''}">${renderMessageBody(m)}</div><div class="msg-time">${formatTime(m.timestamp)}</div></div>`;
       }).join('') || `<div class="empty">Say hello to ${esc(selectedUser.displayName)} 👋</div>`;
       body.scrollTop = body.scrollHeight;
     }
@@ -648,18 +668,12 @@
       const messagesRef = ref(db, 'conversations/' + convKey + '/messages');
       const newRef = push(messagesRef);
       const message = {
-        from: currentUser.username,
-        to: selectedUser.username,
-        timestamp: Date.now(),
-        type: payload.type || 'text',
-        text: payload.text || '',
-        mediaUrl: payload.mediaUrl || '',
-        mediaName: payload.mediaName || '',
-        mimeType: payload.mimeType || '',
-        voice: !!payload.voice
+        from: currentUser.username, to: selectedUser.username, timestamp: Date.now(),
+        type: payload.type || 'text', text: payload.text || '',
+        mediaUrl: payload.mediaUrl || '', mediaName: payload.mediaName || '',
+        mimeType: payload.mimeType || '', voice: !!payload.voice
       };
       await set(newRef, message);
-
       const otherSummary = summariesMap[selectedUser.username] || {};
       const newUnread = Number(otherSummary.unread || 0) + 1;
       await Promise.all([
@@ -697,10 +711,7 @@
     };
 
     async function uploadFileAndSend(file, forceType=''){
-      if(file.size > 20 * 1024 * 1024){
-        showToast('Keep files under 20 MB');
-        return;
-      }
+      if(file.size > 20 * 1024 * 1024){ showToast('Keep files under 20 MB'); return; }
       const safeName = file.name.replace(/[^\w.\-]/g, '_');
       const path = `${currentUser.username}/${Date.now()}-${safeName}`;
       const storageRef = sRef(storage, path);
@@ -718,13 +729,8 @@
     $('attachInput').addEventListener('change', async e => {
       const file = e.target.files?.[0];
       if(file && selectedUser){
-        try{
-          await uploadFileAndSend(file);
-          showToast('Attachment sent');
-        }catch(err){
-          console.error(err);
-          showToast('Upload failed');
-        }
+        try{ await uploadFileAndSend(file); showToast('Attachment sent'); }
+        catch(err){ console.error(err); showToast('Upload failed'); }
       }
       e.target.value = '';
     });
@@ -743,13 +749,8 @@
           const blob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
           stream.getTracks().forEach(t => t.stop());
           const file = new File([blob], `voice-note-${Date.now()}.webm`, { type: blob.type || 'audio/webm' });
-          try{
-            await uploadFileAndSend(file, 'audio');
-            showToast('Voice note sent');
-          }catch(err){
-            console.error(err);
-            showToast('Voice note failed');
-          }
+          try{ await uploadFileAndSend(file, 'audio'); showToast('Voice note sent'); }
+          catch(err){ console.error(err); showToast('Voice note failed'); }
           $('voiceBtn').classList.remove('active');
         };
         mediaRecorder.start();
@@ -785,35 +786,22 @@
     });
 
     window.openUserModal = () => {
-      $('newDisplay').value = '';
-      $('newUsername').value = '';
-      $('newPassword').value = '';
-      $('userErr').textContent = '';
+      $('newDisplay').value = ''; $('newUsername').value = ''; $('newPassword').value = ''; $('userErr').textContent = '';
       $('userModal').classList.add('show');
     };
     window.closeUserModal = () => $('userModal').classList.remove('show');
 
     window.createUser = async () => {
-      if(!currentUser?.isAdmin){
-        $('userErr').textContent = 'Admin only';
-        return;
-      }
+      if(!currentUser?.isAdmin){ $('userErr').textContent = 'Admin only'; return; }
       const displayName = $('newDisplay').value.trim();
       const username = $('newUsername').value.trim().toLowerCase();
       const password = $('newPassword').value;
       $('userErr').textContent = '';
-      if(!displayName || !username || !password){
-        $('userErr').textContent = 'Fill all fields';
-        return;
-      }
+      if(!displayName || !username || !password){ $('userErr').textContent = 'Fill all fields'; return; }
       const exists = await getUser(username);
-      if(exists){
-        $('userErr').textContent = 'Username already exists';
-        return;
-      }
+      if(exists){ $('userErr').textContent = 'Username already exists'; return; }
       const passwordHash = await sha256(password);
-      const colorIndex = Math.floor(Math.random() * 8);
-      const user = { username, displayName, passwordHash, avatarUrl:'', colorIndex, isAdmin:false };
+      const user = { username, displayName, passwordHash, avatarUrl:'', colorIndex:0, isAdmin:false };
       await set(ref(db, 'users/' + username), user);
       closeUserModal();
       showToast('User created');
@@ -833,9 +821,6 @@
       $('loginUser').addEventListener('keydown', e => { if(e.key === 'Enter') $('loginPass').focus(); });
       $('loginPass').addEventListener('keydown', e => { if(e.key === 'Enter') doLogin(); });
       updateCalc();
-      if(getConfig().apiKey){
-        try{ initFirebase(); }catch{}
-      }
     }
     boot();
   </script>
